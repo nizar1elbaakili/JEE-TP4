@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1 class="text-center text-3xl">Kino Der Toten</h1>
+<h1 class="text-center text-xl">Delete A Video</h1>
+
+
+
+<div class="relative overflow-x-auto">
+    <form th:action="@{/deleteVideo}" method="post">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date Publication
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Creator Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="video:${listvideos}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th th:text="${video.getId()}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+                <td th:text="${video.getName()}" class="px-6 py-4"></td>
+                <td th:text="${video.getDescription()}" class="px-6 py-4"></td>
+                <td th:text="${video.getDatePublication()}" class="px-6 py-4"></td>
+                <td th:text="${video.getCreator().getName()}" class="px-6 py-4"></td>
+                <td  class="px-6 py-4">
+                    <button th:href="@{/deleteVideo/${video.getId()}}" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Delete</button>
+                    <input   th:name="id" th:type="hidden"    th:value="${video.getId()}">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

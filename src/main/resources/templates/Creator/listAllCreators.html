@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1 class="text-center text-3xl">Kino Der Toten</h1>
+<h1 class="text-center text-xl">list All Creators </h1>
+
+
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Id
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Name
+            </th>
+            <th scope="col" class="px-6 py-3">
+                email
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Number Of Videos
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="creator:${creators}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th th:text="${creator.getId()}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+            <td th:text="${creator.getName()}" class="px-6 py-4"></td>
+            <td th:text="${creator.getEmail()}" class="px-6 py-4"></td>
+            <td  class="px-6 py-4">
+                <ul class="list-disc">
+                    <li th:each="video:${creator.getVideos()}" th:text="${video.getName()}"></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

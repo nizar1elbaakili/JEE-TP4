@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h1 class="text-center text-3xl">Kino Der Toten</h1>
+    <h1 class="text-center text-xl">Add A Video</h1>
+    <h1 th:text="${status}" class="text-center text-xl text-green-500"></h1>
+    <br>
+    <form class="max-w-sm mx-auto" method="post">
+        <div class="mb-5">
+            <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="Video Name Here" required />
+        </div>
+        <div class="mb-5">
+            <input type="text" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="Video Descrption " required />
+        </div>
+        <div class="mb-5">
+            <input type="text" name="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="Video Url " required />
+        </div>
+        <div class="mb-3">
+            <select name="creator_id" class="bg-gray-800 py-2 px-4 rounded-xl w-[100%] text-white text-center border-none cursor-pointer" >
+                <option   th:value="${creator.getId()}" th:each="creator:${creators}" th:text="${creator.getName()}"></option>
+            </select>
+        </div>
+        <div class="flex justify-center">
+            <a th:href="@{/addCreator}" type="submit" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Add Creator</a>
+        </div>
+
+    </form>
+    <br>
+    <div class="flex justify-center">
+        <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Add Video</button>
+    </div>
+    <br>
+
+    <div class="flex justify-center">
+        <a th:href="@{/listAllVideos}" type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">List All Videos</a>
+    </div>
+</body>
+</html>
